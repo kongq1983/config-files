@@ -1,0 +1,12 @@
+---
+- hosts: testservers
+  tasks:
+    - name: install deltarpm 
+      yum: name=deltarpm state=present update_cache=yes
+
+    - name: install telnet-server.x86_64 
+      yum: name=telnet-server.x86_64 state=present
+
+    - name: install telnet.x86_64 
+      yum: name=telnet.x86_64 state=present
+

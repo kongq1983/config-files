@@ -1,0 +1,20 @@
+---
+
+- hosts: appservers
+
+  vars:
+    redisfilepath: /software/redis-4.0.11.tar.gz
+ 
+  tasks:
+    - name: "demo shell"
+      shell: echo start `date` {{ redisfilepath }}  >> /tmp/ehco.log
+
+
+    - name: copy redis to appservers
+      copy:
+        src: '{{ redisfilepath }}'
+        dest: /software
+        owner: root
+        group: root
+        mode: 0644
+

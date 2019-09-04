@@ -1,0 +1,7 @@
+---
+- hosts: appservers 
+  user: root
+  tasks:
+  - name: test connection
+    ping:
+    remote_user: mytest

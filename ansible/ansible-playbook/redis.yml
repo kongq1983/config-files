@@ -1,0 +1,31 @@
+---
+- hosts: appservers
+
+  vars:
+    #redisfilepath: /software/redis-4.0.11.tar.gz
+    redisfilepath: /softwar/redise/redis-5.0.4.tar.gz
+
+  tasks:
+    - name: "demo shell"
+      shell: echo start `date`
+ 
+    - name: "create direction"
+      file:
+        path: /software
+        state: directory
+        mode: 0755
+
+    - name: copy redis to appservers 
+      copy:
+        src: '{{redisfilepath}}'
+        dest: /software
+        owner: root
+        group: root
+        mode: 0644
+
+
+    - name: Unarchive a file that needs to be downloaded (added in 2.0)
+      unarchive:
+        src: '{{redisfilepath}}'
+        dest: /usr/local
+        remote_src: yes

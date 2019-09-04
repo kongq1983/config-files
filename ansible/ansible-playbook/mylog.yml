@@ -1,0 +1,14 @@
+---
+- hosts: appservers
+  tasks:
+    - name: "demo shell"
+      shell: echo `date`, helloworld I love ansible >> /tmp/echo.log
+
+#  tasks:
+    - name: copy ansible inventory file to client
+      copy:
+        src: /etc/ansible/hosts
+        dest: /tmp/hosts
+        owner: root
+        group: root
+        mode: 0644	
