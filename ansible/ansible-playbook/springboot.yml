@@ -1,0 +1,59 @@
+---
+- hosts: testservers
+  tasks:
+#    - file: path=/tmp/mytemp state=directory mode=0755
+
+# 存放脚本
+     - name: create script directory
+       file:
+         path: /script 
+         state: directory
+         mode: 0755
+
+# 存放jar包    
+       
+     - name: create /microservervice/lib directory
+       file:
+         path: /microservice/lib 
+         state: directory
+         mode: 0755
+
+# 存放日志
+     
+     - name: create /tmp/startlog directory    
+       file:
+         path: /tmp/startlog 
+         state: directory
+         mode: 0755
+
+
+# install killall tools
+
+     - name: install the latest psmisc, killall tools
+       yum:
+         name: psmisc 
+         state: latest
+
+
+     - name: copy readme 
+       copy:
+         src: /script/readme 
+         dest: /script/readme
+
+     - name: copy script
+       copy:
+         src: /script/springboot-restart.sh
+         dest: /script/springboot-restart.sh
+         mode: u+x
+
+     - name: copy srpingboot.jar 
+       copy:
+         src: /microservice/lib/springboot-1.0.jar
+         dest: /microservice/lib/springboot-1.0.jar
+
+     - name: view readme
+       command: cat /script/readme
+
+     - name: run springboot-restart.sh 
+       shell: /script/springboot-restart.sh
+       
