@@ -1,0 +1,26 @@
+
+
+
+
+---
+- hosts: testservers
+
+  vars:
+    mavenfilepath: /software/maven/apache-maven-3.6.2-bin.zip
+    bashrcconfig: /config/bashrc
+
+  tasks:
+    - name: "demo shell"
+      shell: echo start `date`
+    
+    - name: copy bashrc config
+      copy:
+        src: '{{bashrcconfig}}'
+        dest: ~/.bashrc
+        owner: root
+        group: root
+        mode: 0644
+      tags: bashrc
+
+    - name: mvn -v
+      shell: mvn -v >> /tmp/mvn.log
