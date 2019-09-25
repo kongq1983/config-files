@@ -1,0 +1,11 @@
+
+
+- hosts: testservers 
+  remote_user: root
+  tasks:
+  - name: create_user
+    user: name={{ item  }} state=absent  #absent删除
+    with_items:
+    - myuser1
+    - myuser2
+    - myuser3

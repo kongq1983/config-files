@@ -1,0 +1,11 @@
+
+
+- hosts: testservers 
+  remote_user: root
+  tasks:
+  - name: create_user
+    shell: echo {{ item  }} >> /echo.txt 
+    with_items:
+    - myuser1
+    - myuser2
+    - myuser3
