@@ -1,0 +1,8 @@
+
+version: '3'
+services:
+  mysql:
+    image: "myrepo.com:5000/mysql:5.17"
+    privileged: true
+    ports:
+      - "13306:3306"
