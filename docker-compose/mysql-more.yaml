@@ -1,0 +1,29 @@
+version: '3'
+services:
+  mysql-13306:
+    image: "myrepo.com:5000/mysql:5.17-access"
+    privileged: true
+    ports:
+      - "13306:3306"
+    volumes:
+       - /mysql/13306/data:/var/lib/mysql
+       - /mysql/13306/conf/my.cnf:/etc/my.cnf
+
+  mysql-23306:
+    image: "myrepo.com:5000/mysql:5.17-access"
+    privileged: true
+    ports:
+      - "23306:3306"
+    volumes:
+      - /mysql/23306/data:/var/lib/mysql
+      - /mysql/23306/conf/my.cnf:/etc/my.cnf
+
+
+  mysql-33306:
+    image: "myrepo.com:5000/mysql:5.17-access"
+    privileged: true
+    ports:
+      - "33306:3306"
+    volumes:
+      - /mysql/33306/data:/var/lib/mysql
+      - /mysql/33306/conf/my.cnf:/etc/my.cnf
